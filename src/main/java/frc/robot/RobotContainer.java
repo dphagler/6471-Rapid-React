@@ -5,9 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.DriveManual;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,7 +31,7 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public final static XboxController m_driverController = new XboxController(0);
-  public final XboxController m_driver2Controller = new XboxController(1);
+  public final Joystick m_driver2Controller = new Joystick(1);
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -48,14 +51,69 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Climber
-      
+   
+  //Shooter
+    
+  new JoystickButton(m_driver2Controller, Button.kLeftBumper.value)
+  .whileHeld(new ShootLow());
 
-    //Intake
+new JoystickButton(m_driver2Controller, Button.kRightBumper.value)
+.whileHeld(new ShootHigh());
+
+new JoystickButton(m_driverController, Button.kB.value)
+.whileHeld(new CrazyShot());
 
 
-    //Arm
+//Intake
 
+new JoystickButton(m_driver2Controller, Button.kA.value)
+  .whileHeld(new IntakeCommand());
+
+new JoystickButton(m_driverController, Button.kA.value)
+  .whileHeld(new FireBalls());
+
+new JoystickButton(m_driver2Controller, Button.kB.value)
+  .whileHeld(new ClearHopper());      
+
+new XboxController(m_driverController, Button.kX.value)
+  .whenPressed(() -> m_intake.extendIntake());
+
+new XboxController(m_driverController, Button.kY.value)
+  .whenPressed(() -> m_intake.retractIntake());        
+
+//Climber
+
+new JoystickButton(m_driver3Controller, Button.kY.value)
+.whileHeld(new ClimberUp());
+
+new JoystickButton(m_driver3Controller, Button.kA.value)
+.whileHeld(new ClimberDown());
+
+new JoystickButton(m_driver3Controller, Button.kX.value)
+.whileHeld(new ClimberOut());
+
+new JoystickButton(m_driver3Controller, Button.kB.value)
+.whileHeld(new ClimberIn());
+
+new JoystickButton(m_driver3Controller, Button.kLeftBumper.value)
+.whenPressed(() -> m_Climber.climberLock());
+
+new JoystickButton(m_driver3Controller, Button.kRightBumper.value)
+.whenPressed(() -> m_Climber.climberUnlock());
+
+//Arm
+
+new XboxController(Button.kB.value))
+.whileHeld(new Armup());
+
+new XboxController(Button.kA.value)
+.whileHeld(Armdown());
+
+
+  }
+
+  private Object Armdown() {
+    return null;
   }
 
   /**
