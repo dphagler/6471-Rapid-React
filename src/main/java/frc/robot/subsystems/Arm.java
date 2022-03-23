@@ -31,7 +31,15 @@ public class Arm extends SubsystemBase {
   }
 
   public void runArm(double speed){
-    armMotor.set(ControlMode.PercentOutput, speed);
+    
+    if(speed > 0 && getArmEncoder() <= 5000){
+      armMotor.set(ControlMode.PercentOutput, speed);
+    } else if(speed < 0 && getArmEncoder() >= 0){
+      armMotor.set(ControlMode.PercentOutput, speed);
+    } else {
+      armMotor.set(ControlMode.PercentOutput, 0);
+    }
+    
   }
 
   public void stopArm(){

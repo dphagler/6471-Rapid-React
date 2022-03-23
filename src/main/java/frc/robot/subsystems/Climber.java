@@ -64,11 +64,27 @@ public class Climber extends SubsystemBase {
   }
 
   public void climber1Rotate(double speed){
-    climber1Rotate.set(ControlMode.PercentOutput, speed);
+
+    if(speed > 0 && getRotateEncoder1() <= 5000){
+      climber1Rotate.set(ControlMode.PercentOutput, speed);
+    } else if(speed < 0 && getRotateEncoder1() >= 0){
+      climber1Rotate.set(ControlMode.PercentOutput, speed);
+    } else {
+      climber1Rotate.set(ControlMode.PercentOutput, 0);
+    }
+
   }
 
   public void climber2Rotate(double speed){
-    climber2Rotate.set(ControlMode.PercentOutput, speed);
+
+    if(speed > 0 && getRotateEncoder2() <= 5000){
+      climber2Rotate.set(ControlMode.PercentOutput, speed);
+    } else if(speed < 0 && getRotateEncoder2() >= 0){
+      climber2Rotate.set(ControlMode.PercentOutput, speed);
+    } else {
+      climber2Rotate.set(ControlMode.PercentOutput, 0);
+    }
+
   }
 
   public void climber1RotateStop(){

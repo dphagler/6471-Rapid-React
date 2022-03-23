@@ -39,6 +39,7 @@ public class DriveTrain extends SubsystemBase {
     left_motors = new MotorControllerGroup(leftMaster, leftSlave);
 
     m_drive = new DifferentialDrive(right_motors, left_motors);
+    m_drive.setSafetyEnabled(false);
 
   }
 
@@ -50,4 +51,10 @@ public class DriveTrain extends SubsystemBase {
   public void arcadeDrive(double speed, double rotation){
     m_drive.arcadeDrive(speed, rotation);
   }
+
+  public void tankDrive(double left, double right){
+    m_drive.tankDrive(left, right);
+  }
+
+
 }
