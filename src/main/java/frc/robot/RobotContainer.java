@@ -65,7 +65,7 @@ public class RobotContainer {
       .whileHeld(new IntakeShootHigh());
     //intake balls
     new JoystickButton(m_driverController, Button.kA.value)
-      .whileHeld(() -> m_intake.runIntake(-.25))
+      .whileHeld(() -> m_intake.runIntake(.5))
       .whenReleased(() -> m_intake.stopIntake());  
   
   //Arm

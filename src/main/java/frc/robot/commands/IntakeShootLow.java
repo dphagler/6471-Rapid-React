@@ -20,7 +20,7 @@ public class IntakeShootLow extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_intake.runIntake(.25);
+    RobotContainer.m_intake.runIntake(-.5);
     RobotContainer.m_intake.setAngle(300);
   }
 
