@@ -51,7 +51,6 @@ public class Intake extends SubsystemBase {
     
     intakeMotor = new CANSparkMax(14, MotorType.kBrushed);
 
-    intakeMotor.restoreFactoryDefaults();
     intakeMotor.setIdleMode(IdleMode.kBrake);
   }
 
