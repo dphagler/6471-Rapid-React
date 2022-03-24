@@ -24,8 +24,7 @@ public class Climber extends SubsystemBase {
 
     climber1Elevate = new CANSparkMax(15, MotorType.kBrushed);
     climber2Elevate = new CANSparkMax(16, MotorType.kBrushed);
-    climber1Elevate.restoreFactoryDefaults();
-    climber2Elevate.restoreFactoryDefaults();
+    
     climber1Elevate.setIdleMode(IdleMode.kBrake);
     climber2Elevate.setIdleMode(IdleMode.kBrake);
 
